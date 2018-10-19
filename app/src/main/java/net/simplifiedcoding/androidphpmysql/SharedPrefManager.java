@@ -20,6 +20,16 @@ public class SharedPrefManager {
     private static final String KEY_USERNAME = "username";
     private static final String KEY_USER_EMAIL = "useremail";
     private static final String KEY_USER_ID = "userid";
+    private static final String KEY_NOME= "mysharedpref12";
+    private static final String KEY_SOBRENOME = "mysharedpref12";
+    private static final String KEY_CPF = "mysharedpref12";
+    private static final String KEY_CIDADE = "mysharedpref12";
+    private static final String KEY_BAIRRO= "mysharedpref12";
+    private static final String KEY_RUA = "mysharedpref12";
+    private static final String KEY_CEP = "mysharedpref12";
+    private static final String KEY_NUMERO = "mysharedpref12";
+    private static final String KEY_TELEFONEUM = "mysharedpref12";
+    private static final String KEY_TELEFONEDOIS = "mysharedpref12";
 
 
     private SharedPrefManager(Context context) {
@@ -34,14 +44,24 @@ public class SharedPrefManager {
         return mInstance;
     }
 
-    public boolean userLogin(int id, String username, String email){
+    public boolean userLogin(User userParams){
 
         SharedPreferences sharedPreferences = mCtx.getSharedPreferences(SHARED_PREF_NAME, Context.MODE_PRIVATE);
         SharedPreferences.Editor editor = sharedPreferences.edit();
 
-        editor.putInt(KEY_USER_ID, id);
-        editor.putString(KEY_USER_EMAIL, email);
-        editor.putString(KEY_USERNAME, username);
+        editor.putInt(KEY_USER_ID, userParams.getId());
+        editor.putString(KEY_USER_EMAIL, userParams.getEmail());
+        editor.putString(KEY_USERNAME, userParams.getUsername());
+        editor.putString(KEY_NOME, userParams.getNome());
+        editor.putString(KEY_SOBRENOME, userParams.getSobrenome());
+        editor.putString(KEY_CPF, userParams.getCpf());
+        editor.putString(KEY_TELEFONEUM, userParams.getTelefoneUm());
+        editor.putString(KEY_TELEFONEDOIS, userParams.getTelefoneDois());
+        editor.putString(KEY_CIDADE, userParams.getCidade());
+        editor.putString(KEY_BAIRRO, userParams.getBairro());
+        editor.putString(KEY_RUA, userParams.getRua());
+        editor.putString(KEY_NUMERO, userParams.getNumero());
+        editor.putString(KEY_CEP, userParams.getCep());
 
         editor.apply();
 

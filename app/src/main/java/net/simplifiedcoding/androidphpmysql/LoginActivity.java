@@ -73,12 +73,9 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
                         try {
                             JSONObject obj = new JSONObject(response);
                             if(!obj.getBoolean("error")){
+                                User user = new User(Integer.parseInt(obj.getString("id")),obj.getString("nome"),obj.getString("sobrenome"),obj.getString("email"),obj.getString("username"),obj.getString("cpf"),obj.getString("cidade"),obj.getString("bairro"),obj.getString("rua"),obj.getString("cep"),obj.getString("numero"),obj.getString("telefoneUm"),obj.getString("telefoneDois"));
                                 SharedPrefManager.getInstance(getApplicationContext())
-                                        .userLogin(
-                                                obj.getInt("id"),
-                                                obj.getString("username"),
-                                                obj.getString("email")
-                                        );
+                                        .userLogin(user);
                                 startActivity(new Intent(getApplicationContext(), ProfileActivity.class));
                                 finish();
                             }else{
