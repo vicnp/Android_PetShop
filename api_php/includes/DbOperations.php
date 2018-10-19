@@ -38,12 +38,12 @@
 			$stmt->bind_param("ss",$username,$password);
 			$stmt->execute();
 			$stmt->store_result(); 
-			
 			return $stmt->num_rows > 0; 
 		}
 
 		public function getUserByUsername($username){
-			$stmt = $this->con->prepare("SELECT * FROM users WHERE username = ?");
+			//$stmt = $this->con->prepare("SELECT * FROM users WHERE username = ?");
+			$stmt = $this->con->prepare("SELECT u.username, u.password, u.id, p.nome,p.sobrenome,p.cpf,e.cidade,e.bairro,e.rua,e.cep,e.numero,c.email,c.telefoneUm,c.telefoneDois,a.nome AS petname,a.peso,a.raca,a.ano_nascimento,cs.data,cs.hora FROM users u JOIN profile p ON p.id = u.id JOIN endereco e ON e.profile_id = p.id JOIN contato c ON c.profile_id = p.id JOIN animal a on a.id = p.id JOIN consultas cs ON cs.animal_id = a.id WHERE u.username = ?");
 			$stmt->bind_param("s",$username);
 			$stmt->execute();
 			return $stmt->get_result()->fetch_assoc();
@@ -53,6 +53,14 @@
 		private function isUserExist($username, $email){
 			$stmt = $this->con->prepare("SELECT id FROM users WHERE username = ? OR email = ?");
 			$stmt->bind_param("ss", $username, $email);
+			$stmt->execute(); 
+			$stmt->store_result(); 
+			return $stmt->num_rows > 0; 
+		}
+		
+	   public function isEmailExist($email){
+			$stmt = $this->con->prepare("SELECT id FROM users WHERE email = ?");
+			$stmt->bind_param("s", $email);
 			$stmt->execute(); 
 			$stmt->store_result(); 
 			return $stmt->num_rows > 0; 

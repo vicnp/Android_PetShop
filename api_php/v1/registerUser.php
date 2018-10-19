@@ -21,22 +21,22 @@ if($_SERVER['REQUEST_METHOD']=='POST'){
 								);
 		if($result == 1){
 			$response['error'] = false; 
-			$response['message'] = "User registered successfully";
+			$response['message'] = "Usuário Registrado com Sucesso";
 		}elseif($result == 2){
 			$response['error'] = true; 
-			$response['message'] = "Some error occurred please try again";			
+			$response['message'] = "Ocorreu um erro!";			
 		}elseif($result == 0){
 			$response['error'] = true; 
-			$response['message'] = "It seems you are already registered, please choose a different email and username";						
+			$response['message'] = "Este usuário ou email já estão cadastrados!";						
 		}
 
 	}else{
 		$response['error'] = true; 
-		$response['message'] = "Required fields are missing";
+		$response['message'] = "Preencha todos os campos.";
 	}
 }else{
 	$response['error'] = true; 
-	$response['message'] = "Invalid Request";
+	$response['message'] = "Requisição Inválida.";
 }
 
 echo json_encode($response);
