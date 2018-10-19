@@ -11,7 +11,7 @@ import android.widget.Toast;
 public class ProfileActivity extends AppCompatActivity {
 
 
-    private TextView textViewUsername, textViewUserEmail;
+    private TextView textViewUsername, textViewUserEmail, textViewNomeUsuario, txtViewSobreNome, textViewCPF;
 
 
     @Override
@@ -26,8 +26,14 @@ public class ProfileActivity extends AppCompatActivity {
 
         textViewUsername = (TextView) findViewById(R.id.textViewUsername);
         textViewUserEmail = (TextView) findViewById(R.id.textViewUseremail);
+        textViewNomeUsuario = (TextView) findViewById(R.id.txtUser_Nome);
+        txtViewSobreNome = (TextView) findViewById(R.id.txtSobrenome);
+        textViewCPF = (TextView) findViewById(R.id.txtCpf);
 
 
+        textViewCPF.setText(SharedPrefManager.getInstance(this).getUser_CPF());
+        txtViewSobreNome.setText(SharedPrefManager.getInstance(this).getUser_SobreNome());
+        textViewNomeUsuario.setText(SharedPrefManager.getInstance(this).getUser_Name());
         textViewUserEmail.setText(SharedPrefManager.getInstance(this).getUserEmail());
         textViewUsername.setText(SharedPrefManager.getInstance(this).getUsername());
 

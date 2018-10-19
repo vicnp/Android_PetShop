@@ -90,8 +90,24 @@ public class SharedPrefManager {
         return sharedPreferences.getString(KEY_USERNAME, null);
     }
 
+    public String getUser_Name(){
+        SharedPreferences sharedPreferences = mCtx.getSharedPreferences(SHARED_PREF_NAME, Context.MODE_PRIVATE);
+        return sharedPreferences.getString(KEY_NOME, null);
+    }
+
+    public String getUser_SobreNome(){
+        SharedPreferences sharedPreferences = mCtx.getSharedPreferences(SHARED_PREF_NAME, Context.MODE_PRIVATE);
+        return sharedPreferences.getString(KEY_SOBRENOME, null);
+    }
+
+    public String getUser_CPF(){
+        SharedPreferences sharedPreferences = mCtx.getSharedPreferences(SHARED_PREF_NAME, Context.MODE_PRIVATE);
+        return sharedPreferences.getString(KEY_CPF, null);
+    }
+
     public String getUserEmail(){
         SharedPreferences sharedPreferences = mCtx.getSharedPreferences(SHARED_PREF_NAME, Context.MODE_PRIVATE);
         return sharedPreferences.getString(KEY_USER_EMAIL, null);
     }
+
 }

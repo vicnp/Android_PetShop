@@ -18,5 +18,9 @@
     <string name="email_logo">Email_Logo</string>
     <string name="enviar">Enviar</string>
     <string name="um_email_de_recupera_o_ser_enviado">Uma mensagem de recuperação será enviada.</string>
+    <string name="nome_usuario">nome_usuario</string>
+    <string name="sobrenome_usuario">sobrenome_usuario</string>
+    <string name="cpf_usuario">cpf_usuario</string>
+    <string name="profilepic">profilePIC</string>
 
 </resources>
