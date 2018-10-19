@@ -1,0 +1,22 @@
+<resources>
+    <string name="app_name">PetShop App</string>
+    <string name="entrar">Entrar</string>
+    <string name="digite_sua_senha">Digite sua senha</string>
+    <string name="digite_seu_usu_rio">Digite seu usuário</string>
+    <string name="password">Senha</string>
+    <string name="username">Usuário</string>
+    <string name="user_name">USER NAME</string>
+    <string name="usu_rio">Usuário</string>
+    <string name="e_mail">E-mail</string>
+    <string name="digite_seu_email">Digite seu Email</string>
+    <string name="cadastrar">Cadastrar</string>
+    <string name="login">Login</string>
+    <string name="profile_pic">profile_pic</string>
+    <string name="icon_login">Icon_login</string>
+    <string name="recuperar_senha">Recuperar Senha</string>
+    <string name="digite_string_digite_seu_email">Digite seu Email</string>
+    <string name="email_logo">Email_Logo</string>
+    <string name="enviar">Enviar</string>
+    <string name="um_email_de_recupera_o_ser_enviado">Uma mensagem de recuperação será enviada.</string>
+
+</resources>
