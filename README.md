@@ -1,2 +1,2 @@
 # Android_PetShop
-TCC
+Aplicativo Android, base dados mysql, interface php. 
