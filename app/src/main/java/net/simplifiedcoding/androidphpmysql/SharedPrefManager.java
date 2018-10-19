@@ -18,18 +18,18 @@ public class SharedPrefManager {
 
     private static final String SHARED_PREF_NAME = "mysharedpref12";
     private static final String KEY_USERNAME = "username";
-    private static final String KEY_USER_EMAIL = "useremail";
+    private static final String KEY_USER_EMAIL = "usermail";
     private static final String KEY_USER_ID = "userid";
-    private static final String KEY_NOME= "mysharedpref12";
-    private static final String KEY_SOBRENOME = "mysharedpref12";
-    private static final String KEY_CPF = "mysharedpref12";
-    private static final String KEY_CIDADE = "mysharedpref12";
-    private static final String KEY_BAIRRO= "mysharedpref12";
-    private static final String KEY_RUA = "mysharedpref12";
-    private static final String KEY_CEP = "mysharedpref12";
-    private static final String KEY_NUMERO = "mysharedpref12";
-    private static final String KEY_TELEFONEUM = "mysharedpref12";
-    private static final String KEY_TELEFONEDOIS = "mysharedpref12";
+    private static final String KEY_NOME= "usernome";
+    private static final String KEY_SOBRENOME = "usersobre";
+    private static final String KEY_CPF = "usercpf";
+    private static final String KEY_CIDADE = "usercidade";
+    private static final String KEY_BAIRRO= "userbairro";
+    private static final String KEY_RUA = "userrua";
+    private static final String KEY_CEP = "usercep";
+    private static final String KEY_NUMERO = "usernumero";
+    private static final String KEY_TELEFONEUM = "usertelefoneum";
+    private static final String KEY_TELEFONEDOIS = "usertelefonedois";
 
 
     private SharedPrefManager(Context context) {
