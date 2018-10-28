@@ -12,10 +12,31 @@
     tools:context="net.simplifiedcoding.androidphpmysql.ProfileActivity">
 
     <android.support.v7.widget.CardView
+        android:id="@+id/PetList"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        app:cardBackgroundColor="@android:color/background_light"
+        app:cardCornerRadius="10dp">
+
+        <ListView
+            android:id="@+id/listview"
+            android:layout_width="match_parent"
+            android:layout_height="270dp"
+            android:layout_alignParentBottom="true"
+            android:layout_centerHorizontal="true"
+            android:layout_marginBottom="13dp" />
+    </android.support.v7.widget.CardView>
+
+    <android.support.v7.widget.CardView
+        android:id="@+id/UserInfo"
         android:layout_width="353dp"
         android:layout_height="190dp"
         android:layout_alignParentTop="true"
         android:layout_centerHorizontal="true"
+        app:cardBackgroundColor="@color/cardview_light_background"
+        app:cardCornerRadius="10dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
@@ -30,6 +51,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="18dp"
                 android:layout_marginStart="8dp"
+                android:layout_marginTop="10dp"
                 android:text="@string/e_mail"
                 android:textAlignment="center"
                 android:textAppearance="@style/Base.TextAppearance.AppCompat.Small"
@@ -43,8 +65,10 @@
                 android:layout_marginEnd="8dp"
                 android:layout_marginStart="128dp"
                 android:layout_marginTop="16dp"
+                android:contentDescription="@string/username"
                 android:text="@string/user_name"
                 android:textAlignment="center"
+                android:textAllCaps="false"
                 android:textAppearance="@style/Base.TextAppearance.AppCompat.Large"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="0.0"
@@ -76,6 +100,7 @@
                 android:id="@+id/txtSobrenome"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_marginStart="3dp"
                 android:layout_marginTop="60dp"
                 android:text="@string/sobrenome_usuario"
                 app:layout_constraintStart_toEndOf="@+id/txtUser_Nome"
@@ -86,11 +111,13 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="8dp"
+                android:layout_marginTop="10dp"
                 android:text="@string/cpf_usuario"
                 app:layout_constraintStart_toEndOf="@+id/pic_profile"
                 app:layout_constraintTop_toBottomOf="@+id/txtSobrenome" />
 
         </android.support.constraint.ConstraintLayout>
+
     </android.support.v7.widget.CardView>
 
 </RelativeLayout>

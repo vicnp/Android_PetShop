@@ -22,5 +22,14 @@
     <string name="sobrenome_usuario">sobrenome_usuario</string>
     <string name="cpf_usuario">cpf_usuario</string>
     <string name="profilepic">profilePIC</string>
+    <string name="nome">Nome</string>
+    <string name="idade">Idade</string>
+    <string name="raca">Raca</string>
+    <string name="_05_06_2018">05/06/2018</string>
+    <string name="ultima_consulta">Ultima Consulta:</string>
+    <string name="sexo">Sexo</string>
+    <string name="_23_10_2018">23/10/2018</string>
+    <string name="ultima_vacina">Ultima Vacina:</string>
+    <string name="sair">Sair</string>
 
 </resources>

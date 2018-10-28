@@ -24,34 +24,42 @@
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="@string/password" />
+            android:text="@string/username"
+            android:textStyle="bold" />
 
         <EditText
             android:id="@+id/editTextUsername"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:hint="@string/digite_seu_usu_rio"
-            android:inputType="" />
+            android:inputType="text"
+            android:textStyle="italic" />
 
 
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="@string/password" />
+            android:text="@string/password"
+            android:textStyle="bold" />
 
         <EditText
             android:id="@+id/editTextPassword"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:fontFamily="sans-serif"
             android:hint="@string/digite_sua_senha"
-            android:inputType="textPassword" />
+            android:inputType="textPassword"
+            android:textAllCaps="false"
+            android:textStyle="italic" />
 
 
         <Button
             android:id="@+id/buttonLogin"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="@string/entrar" />
+            android:fontFamily="sans-serif"
+            android:text="@string/entrar"
+            android:textStyle="bold" />
 
         <Space
             android:layout_width="match_parent"
@@ -61,7 +69,7 @@
             android:id="@+id/button_recover"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:onClick="EmailView"
+            android:onClick="SendEmail"
             android:text="@string/recuperar_senha" />
 
     </LinearLayout>

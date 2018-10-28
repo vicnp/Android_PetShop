@@ -36,7 +36,9 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
         {
             this.getSupportActionBar().hide();
         }
-        catch (NullPointerException e){}
+        catch (NullPointerException e){
+
+        }
 
         setContentView(R.layout.activity_login);
 

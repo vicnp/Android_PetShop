@@ -4,6 +4,6 @@
 
     <item
         android:id="@+id/menuLogout"
-        android:title="Sair" />
+        android:title="@string/sair" />
 
 </menu>
