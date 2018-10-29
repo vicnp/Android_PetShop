@@ -1,0 +1,1 @@
+select * from users u, profile p, endereco e, contato c, animal a where u.username = 'nottke' and u.id = p.users_id and p.id = e.profile_id and p.id = c.profile_id and p.id = a.profile_id
