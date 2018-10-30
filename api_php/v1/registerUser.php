@@ -6,10 +6,19 @@ require_once '../includes/DbOperations.php';
 $response = array(); 
 
 if($_SERVER['REQUEST_METHOD']=='POST'){
-	if(
-		isset($_POST['username']) and 
-			isset($_POST['email']) and 
-				isset($_POST['password']))
+	if(isset($_POST['username']) and 
+	        isset($_POST['email']) and
+	             isset($_POST['password']) and
+	                isset($_POST['cpf']) and 
+	                    isset($_POST['nome']) and 
+	                        isset($_POST['sobrenome'])and 
+	                            isset($_POST['cidade'])and 
+	                                isset($_POST['bairro'])and 
+	                                    isset($_POST['rua'])and 
+	                                        isset($_POST['numero'])and 
+	                                            isset($_POST['cep'])and 
+	                                                isset($_POST['telefoneUm'])and 
+	                                                    isset($_POST['telefoneDois']))
 		{
 		//operate the data further 
 
@@ -17,7 +26,18 @@ if($_SERVER['REQUEST_METHOD']=='POST'){
 
 		$result = $db->createUser( 	$_POST['username'],
 									$_POST['password'],
-									$_POST['email']
+									$_POST['email'],
+									$_POST['cpf'],
+									$_POST['nome'],
+									$_POST['sobrenome'],
+									$_POST['cidade'],
+									$_POST['bairro'],
+									$_POST['rua'],
+									$_POST['cep'],
+									$_POST['numero'],
+									$_POST['telefoneUm'],
+									$_POST['telefoneDois']
+									
 								);
 		if($result == 1){
 			$response['error'] = false; 
