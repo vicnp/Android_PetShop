@@ -1,6 +1,9 @@
 package net.simplifiedcoding.androidphpmysql;
 
-public class Pet {
+import android.os.Parcel;
+import android.os.Parcelable;
+
+public class Pet implements Parcelable{
     String petnome;
     String raca;
     float peso;
@@ -12,6 +15,25 @@ public class Pet {
         this.peso = peso;
         this.ano_nascimento = ano_nascimento;
     }
+
+    protected Pet(Parcel in) {
+        petnome = in.readString();
+        raca = in.readString();
+        peso = in.readFloat();
+        ano_nascimento = in.readString();
+    }
+
+    public static final Creator<Pet> CREATOR = new Creator<Pet>() {
+        @Override
+        public Pet createFromParcel(Parcel in) {
+            return new Pet(in);
+        }
+
+        @Override
+        public Pet[] newArray(int size) {
+            return new Pet[size];
+        }
+    };
 
     public String getPetnome() {
         return petnome;
@@ -43,5 +65,18 @@ public class Pet {
 
     public void setAno_nascimento(String ano_nascimento) {
         this.ano_nascimento = ano_nascimento;
+    }
+
+    @Override
+    public int describeContents() {
+        return 0;
+    }
+
+    @Override
+    public void writeToParcel(Parcel dest, int flags) {
+        dest.writeString(petnome);
+        dest.writeString(raca);
+        dest.writeFloat(peso);
+        dest.writeString(ano_nascimento);
     }
 }

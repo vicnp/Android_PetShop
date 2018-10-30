@@ -2,8 +2,10 @@ package net.simplifiedcoding.androidphpmysql;
 
 import android.app.ProgressDialog;
 import android.content.Intent;
+import android.os.Parcelable;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -16,9 +18,11 @@ import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
 
+import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -75,6 +79,23 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
                         try {
                             JSONObject obj = new JSONObject(response);
                             if(!obj.getBoolean("error")){
+
+                                ArrayList<Pet> user_pets = new ArrayList<>();
+
+                                JSONArray ja_data = obj.getJSONArray("pets");
+                                int length = ja_data.length();
+
+                                for(int i=0; i<length; i++)
+                                {
+
+                                    JSONObject jObj = ja_data.getJSONObject(i);
+                                    Pet pet_i = new Pet(jObj.getString("petname").toString(),
+                                            jObj.getString("raca").toString(),
+                                            Float.parseFloat(jObj.getString("peso").toString()),
+                                            jObj.getString("ano_nascimento").toString());
+                                    user_pets.add(pet_i);
+                                }
+
                                 User user = new User(
                                         Integer.parseInt(obj.getString("id")),
                                         obj.getString("nome"),
@@ -88,12 +109,19 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
                                         obj.getString("cep"),
                                         Integer.toString(obj.getInt("numero")),
                                         obj.getString("telefoneUm"),
-                                        obj.getString("telefoneDois")
+                                        obj.getString("telefoneDois"),
+                                        user_pets
                                 );
+
+
                                 SharedPrefManager.getInstance(getApplicationContext())
                                         .userLogin(user);
-                                startActivity(new Intent(getApplicationContext(), ProfileActivity.class));
+                                Intent intent = new Intent(getApplicationContext(), ProfileActivity.class);
+                                intent.putExtra("PetArray", user_pets);
+
+                                startActivity(intent);
                                 finish();
+
                             }else{
                                 Toast.makeText(
                                         getApplicationContext(),

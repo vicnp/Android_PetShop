@@ -1,6 +1,12 @@
 package net.simplifiedcoding.androidphpmysql;
 
-public class User {
+import android.os.Parcel;
+import android.os.Parcelable;
+
+import java.io.Serializable;
+import java.util.ArrayList;
+
+public class User  implements Parcelable{
     int id;
     String nome;
     String sobrenome;
@@ -14,8 +20,9 @@ public class User {
     String numero;
     String telefoneUm;
     String TelefoneDois;
+    ArrayList<Pet> pets;
 
-    public User(int id, String nome, String sobrenome, String email, String username, String cpf, String cidade, String bairro, String rua, String cep, String numero, String telefoneUm, String getTelefoneDois) {
+    public User(int id, String nome, String sobrenome, String email, String username, String cpf, String cidade, String bairro, String rua, String cep, String numero, String telefoneUm, String getTelefoneDois, ArrayList<Pet> pets) {
         this.id = id;
         this.nome = nome;
         this.sobrenome = sobrenome;
@@ -29,7 +36,36 @@ public class User {
         this.numero = numero;
         this.telefoneUm = telefoneUm;
         this.TelefoneDois = getTelefoneDois;
+        this.pets = pets;
     }
+
+    protected User(Parcel in) {
+        id = in.readInt();
+        nome = in.readString();
+        sobrenome = in.readString();
+        email = in.readString();
+        username = in.readString();
+        cpf = in.readString();
+        cidade = in.readString();
+        bairro = in.readString();
+        rua = in.readString();
+        cep = in.readString();
+        numero = in.readString();
+        telefoneUm = in.readString();
+        TelefoneDois = in.readString();
+    }
+
+    public static final Creator<User> CREATOR = new Creator<User>() {
+        @Override
+        public User createFromParcel(Parcel in) {
+            return new User(in);
+        }
+
+        @Override
+        public User[] newArray(int size) {
+            return new User[size];
+        }
+    };
 
     public int getId() {
         return id;
@@ -133,5 +169,27 @@ public class User {
 
     public void setTelefoneDois(String getTelefoneDois) {
         this.TelefoneDois = getTelefoneDois;
+    }
+
+    @Override
+    public int describeContents() {
+        return 0;
+    }
+
+    @Override
+    public void writeToParcel(Parcel dest, int flags) {
+        dest.writeInt(id);
+        dest.writeString(nome);
+        dest.writeString(sobrenome);
+        dest.writeString(email);
+        dest.writeString(username);
+        dest.writeString(cpf);
+        dest.writeString(cidade);
+        dest.writeString(bairro);
+        dest.writeString(rua);
+        dest.writeString(cep);
+        dest.writeString(numero);
+        dest.writeString(telefoneUm);
+        dest.writeString(TelefoneDois);
     }
 }
