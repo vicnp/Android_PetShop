@@ -18,7 +18,8 @@ if($_SERVER['REQUEST_METHOD']=='POST'){
 	                                        isset($_POST['numero'])and 
 	                                            isset($_POST['cep'])and 
 	                                                isset($_POST['telefoneUm'])and 
-	                                                    isset($_POST['telefoneDois']))
+	                                                    isset($_POST['telefoneDois']) and
+	                                                       isset($_POST['classe']))
 		{
 		//operate the data further 
 
@@ -36,8 +37,8 @@ if($_SERVER['REQUEST_METHOD']=='POST'){
 									$_POST['cep'],
 									$_POST['numero'],
 									$_POST['telefoneUm'],
-									$_POST['telefoneDois']
-									
+									$_POST['telefoneDois'],
+									$_POST['classe']
 								);
 		if($result == 1){
 			$response['error'] = false; 

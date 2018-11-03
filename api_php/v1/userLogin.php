@@ -1,15 +1,20 @@
 <?php 
 
 require_once '../includes/DbOperations.php';
-
+error_reporting(0);
 $response = array(); 
 $pets = array();
 
 if($_SERVER['REQUEST_METHOD']=='POST'){
 	if(isset($_POST['username']) and isset($_POST['password'])){
 		$db = new DbOperations(); 
-
 		if($db->userLogin($_POST['username'], $_POST['password'])){
+		    if(isset($_POST['btn_login'])){
+             header("Location: ../adm.html");
+             die();
+             return;
+            }
+		    
 			$user = $db->getUserByUsername($_POST['username']);
 			//$response['error'] = false; 
 			//$response['id'] = '1';
