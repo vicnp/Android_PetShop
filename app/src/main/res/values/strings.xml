@@ -31,5 +31,22 @@
     <string name="_23_10_2018">23/10/2018</string>
     <string name="ultima_vacina">Ultima Vacina:</string>
     <string name="sair">Sair</string>
+    <string name="hist_rico_de_vacinas">Histórico de Vacinas</string>
+    <string name="hist_rico_consultas">Histórico Consultas</string>
+    <string name="vacina">Vacina</string>
+    <string name="antirr_bica">Antirrábica</string>
+    <string name="data_de_aplica_o">Data de Aplicação:</string>
+    <string name="tipo_da_vacina">Tipo da Vacina:</string>
+    <string name="nome_vet">Nome_Vet</string>
+    <string name="veterin_rio">Veterinário:</string>
+    <string name="crmv">CRMV:</string>
+    <string name="crmv_vet">CRMV_vet</string>
+    <string name="coment_rio">Comentário</string>
+    <string name="coment_rio_do_veterin_rio">Comentário do Veterinário</string>
+    <string name="data_da_consulta">Data da Consulta</string>
+    <string name="consulta">Consulta</string>
+    <string name="motivo">Motivo</string>
+    <string name="mensal">Mensal</string>
+    <string name="rotina">Rotina</string>
 
 </resources>

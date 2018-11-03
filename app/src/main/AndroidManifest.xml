@@ -20,7 +20,11 @@
         </activity>
         <activity android:name=".ProfileActivity" />
         <activity android:name=".Send_Recovery_Email" />
-        <activity android:name=".PetInfo"></activity>
+        <activity android:name=".PetInfo" />
+        <activity android:name=".Vacinas" />
+        <activity android:name=".Consultas" />
+        <activity android:name=".dadosVacina" />
+        <activity android:name=".dadosConsultas"></activity>
     </application>
 
 </manifest>
