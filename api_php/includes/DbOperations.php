@@ -1,4 +1,34 @@
+<html>
+    <head>
+        <script>  
+            function confirmaExcluir(id){
+                if (confirm('Deseja realmente deletar este Pet?')) {
+                    window.location.replace("../v1/excluirPet.php?id="+id);
+                } else {
+                   
+                 }
+            }
+            
+            function confirmaEditar(id){
+                if (confirm('Deseja realmente editar este Pet?')) {
+                    window.location.replace("../v1/editarPet.php?id="+id);
+                } else {
+                   
+                 }
+            }
+            function confirmaMais(id){
+                  window.location.replace("../v1/maisInfoPet.php?id="+id);
+            }
+            
+        </script>
+    </head>
+    <body>
+        
+    </body>
+</html>
+
 <?php 
+
 
 	class DbOperations{
 
@@ -11,6 +41,7 @@
 			$db = new DbConnect();
 
 			$this->con = $db->connect();
+			
 
 		}
 
@@ -91,6 +122,40 @@
 			}
 			return null;
 		}
+		
+		
+		
+		
+		
+        public function UpdateUser($iduser ,$username,$email,$cpf, $nome, $sobrenome,$cidade,$bairro,$rua,$numero,$cep,$telefoneUm,$telefoneDois,$classe){
+            
+            $stmt = $this->con->prepare("UPDATE `users` SET `username`=?,`classe`=? WHERE id= ?");
+			$stmt->bind_param("sss",$username,$classe,$iduser);
+			
+			if($stmt->execute()){
+			    
+                $stmt = $this->con->prepare("UPDATE `profile` SET `cpf`= ?,`nome`= ?,`sobrenome`= ? WHERE users_id = ?");
+    			$stmt->bind_param("ssss",$cpf,$nome,$sobrenome,$iduser);
+    			
+    			if($stmt->execute()){
+    			    
+    			    $stmt = $this->con->prepare("UPDATE `endereco` SET `cidade`= ?,`bairro`= ?,`rua`= ? ,`cep`= ?,`numero`= ? WHERE profile_users_id = ?");
+    			    $stmt->bind_param("ssssss",$cidade,$bairro,$rua,$cep,$numero,$iduser);
+    			    
+    			    if($stmt->execute()){
+    			        $stmt = $this->con->prepare("UPDATE `contato` SET `email`= ?,`telefoneUm`= ?,`telefoneDois`= ? WHERE profile_users_id = ?");
+    			        $stmt->bind_param("ssss",$email,$telefoneUm,$telefoneDois,$iduser);
+    			         if($stmt->execute()){
+    			             $stmt->store_result();
+    			             return 1;
+    			         }else{
+    			             return 2;
+    			         }
+    			    }
+    			}
+			} 
+		
+        }
         
         
 		public function getUserByUsername($username){
@@ -101,12 +166,40 @@
 			return $stmt->get_result()->fetch_assoc();
 		}
 		
+		
+		
+		public function getUserByID($id){
+			//$stmt = $this->con->prepare("SELECT * FROM users WHERE username = ?");
+			$stmt = $this->con->prepare("select u.id , u.classe ,u.username, u.password, p.cpf,p.nome,p.sobrenome, e.cidade, e.bairro, e.rua, e.cep, e.numero, c.email, c.telefoneUm, c.telefoneDois, a.nome as petname, a.peso, a.raca, a.ano_nascimento from users u, profile p, endereco e, contato c, animal a where u.id = p.users_id and p.id = e.profile_id and p.id = c.profile_id and p.id = a.profile_id and u.id = ?");
+			$stmt->bind_param("s",$id);
+			$stmt->execute();
+			return $stmt->get_result()->fetch_assoc();
+		}
+		
+		
 		public function getAllUsers(){
 			//$stmt = $this->con->prepare("SELECT * FROM users WHERE username = ?");
 		    $stmt = $this->con->prepare("select u.id ,u.username, u.password, p.cpf,p.nome,p.sobrenome, e.cidade, e.bairro, e.rua, e.cep, e.numero, c.email, c.telefoneUm, c.telefoneDois from users u, profile p, endereco e, contato c where u.id = p.users_id and p.id = e.profile_id and p.id = c.profile_id");
 		    $stmt->execute();
 			return $stmt;
 		}
+		
+		public function getUserPets($id){
+			//$stmt = $this->con->prepare("SELECT * FROM users WHERE username = ?");
+		    $stmt = $this->con->prepare("select a.id, a.nome as petname, a.peso, a.raca, a.ano_nascimento from users u, profile p, endereco e, contato c, animal a where u.id = p.users_id and p.id = e.profile_id and p.id = c.profile_id and p.id = a.profile_id and u.id = ?");
+		    $stmt->bind_param("s",$id);
+		    $stmt->execute();
+			return $stmt;
+		}
+		
+			public function getPet($id){
+			//$stmt = $this->con->prepare("SELECT * FROM users WHERE username = ?");
+		    $stmt = $this->con->prepare("select a.id, a.nome as petname, a.peso, a.raca, a.ano_nascimento from users u, profile p, endereco e, contato c, animal a where u.id = p.users_id and p.id = e.profile_id and p.id = c.profile_id and p.id = a.profile_id and a.id = ?");
+		    $stmt->bind_param("s",$id);
+		    $stmt->execute();
+		    return $stmt->get_result()->fetch_assoc();
+		}
+		
 		
 		
 		
@@ -169,12 +262,90 @@
 		    
 		}
 		
-    	 public function isEmailExist($email){
+		
+		public function TablePets($id){
+		    if($id != null){
+                $db = new DbOperations(); 
+		        $user = $db->getUserPets($id);
+		        
+		      if($user != null){
+    	        $result = $user->get_result();
+    			if($result->num_rows > 0){
+    			    echo'<table id="customers">';
+    			    echo'<tr>';
+    			    echo'<th>ID</th>';
+    			    echo'<th>Nome Pet</th>';
+    			    echo'<th>Peso</th>';
+    			    echo'<th>Raça</th>';
+    			    echo'<th>Nascimento</th>';
+    			    
+    			    echo'<th>Ações</th>';
+    			    echo'</tr>';
+    			    echo'<tr>';
+    			    echo'<br><br>';
+        			while($row = $result->fetch_assoc()) {
+        			   echo '<td>'.$row['id'].'</td>'; 
+                       echo '<td>'.$row['petname'].'</td>';
+                       echo '<td>'.$row['peso'].'</td>';
+                       echo '<td>'.$row['raca'].'&nbsp'.'</td>';
+                       echo '<td>'.$row['ano_nascimento'].'</td>'; 
+                       echo '<td><a onClick="confirmaMais('.$row['id'].');"   href="#" >&nbspMais&nbsp</a>'.'&nbsp'; 
+                       echo '<a onClick="confirmaEditar('.$row['id'].');"     href="#" >&nbspEditar&nbsp</a>'.'&nbsp';
+                       echo '<a onClick="confirmaExcluir('.$row['id'].');"    href="#" >&nbspExcluir&nbsp</a>'.'</td>';
+                       echo'</tr>';
+        			}
+        			
+        		    echo'</table>';
+        		    echo'<br><br>';
+        		    echo'<br><br>';
+        		    echo'<br><br>';
+    			}else{
+    		        echo'<h1>Não há Pets Registrados!</h1>';
+    			}
+        }
+		        
+		    }else{
+		        echo'<h1> Falha ao recuperar pets </h1>';
+		    }
+		}
+		
+    	public function isEmailExist($email){
     		$stmt = $this->con->prepare("SELECT id FROM users WHERE email = ?");
     		$stmt->bind_param("s", $email);
     		$stmt->execute(); 
     		$stmt->store_result(); 
     		return $stmt->num_rows > 0; 
         }
+        
+        
+        
+       public function deletePet($id){
+           $stmt = $this->con->prepare("DELETE FROM `consultas` WHERE animal_id = ?");
+			$stmt->bind_param("s", $id);
+			if($stmt->execute()){
+			     $stmt = $this->con->prepare("DELETE FROM `animal` WHERE id = ?");
+			     $stmt->bind_param("s", $id);
+			    if($stmt->execute()){
+			        return 1;
+			    }else{
+			        return 2;
+			    }
+			}
+       }
+       
+       
+       public function UpdatePet($idpet, $petname,$peso,$nascimento,$raca){
+            $stmt = $this->con->prepare("UPDATE `animal` SET `nome`= ?,`peso`= ?,`raca`= ?,`ano_nascimento`= ? WHERE id = ?");
+			$stmt->bind_param("sssss",$petname,$peso,$raca,$nascimento,$idpet);
+			if($stmt->execute()){
+			   	$stmt->store_result();
+			   	return 1;
+			}else{
+			    return 2;
+			}
+       }
 
 	}
+	
+	
+	
